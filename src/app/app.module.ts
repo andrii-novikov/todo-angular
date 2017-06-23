@@ -9,12 +9,14 @@ import { ProjectsComponent } from './components/projects/projects.component';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component'
 
 import { ProjectService } from './services/projects.service';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectsComponent,
-    ProjectDetailComponent
+    ProjectDetailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
