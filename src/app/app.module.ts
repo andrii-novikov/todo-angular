@@ -2,11 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
-import { AppComponent } from './components/app/app.component';
+import { AppRoutingModule } from './app-routing.module'
 
-import { ProjectService } from './services/projects.service';
+import { AppComponent } from './components/app/app.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { ProjectDetailComponent } from './components/project-detail/project-detail.component'
+
+import { ProjectService } from './services/projects.service';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { ProjectDetailComponent } from './components/project-detail/project-deta
   ],
   imports: [
     BrowserModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [ProjectService],
   bootstrap: [AppComponent]
