@@ -1,3 +1,4 @@
+<!--Navigation-->
 <div class="navbar-fixed">
 
   <nav  role="navigation">
@@ -7,11 +8,16 @@
 
       <ul class="right hide-on-med-and-down">
 
-        <li> <a>LOGIN</a></li>
-        <li> <a>REGISTER</a></li>
+        <li *ngIf="!tokenAuthService.userSignedIn()">
+          <a [routerLink]="['sign']">SIGN IN</a>
+        </li>
 
-        <li> <a >PROFILE</a></li>
-        <li> <a >LOGOUT</a></li>
+        <li *ngIf="tokenAuthService.userSignedIn()">
+          <a >PROFILE</a>
+        </li>
+        <li *ngIf="tokenAuthService.userSignedIn()">
+          <a (click)="tokenAuthService.signOut()">LOGOUT</a>
+        </li>
 
       </ul>
 

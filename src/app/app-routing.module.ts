@@ -3,12 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ProjectsComponent } from './projects/projects.component'
 import { ProjectDetailComponent } from './project-detail/project-detail.component'
-import { LoginComponent } from './login/login.component'
+import { SignComponent } from './sign/sign.component'
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: LoginComponent
+    path: 'sign',
+    component: SignComponent
   },
   {
     path: 'projects/:id',
