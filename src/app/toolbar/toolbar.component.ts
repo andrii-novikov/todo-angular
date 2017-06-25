@@ -13,6 +13,10 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  userInfo() {
+    return this.tokenAuthService.currentUserData ? `Welcome ${this.tokenAuthService.currentUserData.email}!` : ''
+  }
+
 }
 
 

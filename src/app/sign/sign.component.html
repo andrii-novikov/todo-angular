@@ -1,24 +1,19 @@
-<div class="row">
-  <div class="row">
-    <span class="modal-close right">
-      <i class="fa fa-times" aria-hidden="true"></i>
-    </span>
+<div class="container pt-5">
+  <div class="row col-md-4 push-md-4">
+    <h3 class="grey-text text-darken-2">{{authMode | titlecase}}</h3>
   </div>
 
-  <div class="row">
-    <h3 class="grey-text text-darken-2">{{authMode}}</h3>
-
-    <app-signin-form (onFormResult)="onLoginFormResult($event)" *ngIf="isLoginMode()"></app-signin-form>
-    <app-signup-form (onFormResult)="onRegisterFormResult($event)" *ngIf="isRegisterMode()"></app-signup-form>
+  <div class="row col-md-4 push-md-4">
+    <app-signin-form (onFormResult)="onFormResult($event)" *ngIf="isLoginMode()"></app-signin-form>
+    <app-signup-form (onFormResult)="onFormResult($event)" *ngIf="isRegisterMode()"></app-signup-form>
   </div>
 
-
-  <div class="row">
+  <div class="row col-md-4 push-md-4">
     <span class="grey-text text-darken-2" *ngIf="isLoginMode()">
-      Need an account? <a (click)="authMode='register'">Click here to register.</a>
+      Need an account? <a (click)="register($event)" class="btn btn-link">Click here to register.</a>
     </span>
     <span class="grey-text text-darken-2" *ngIf="isRegisterMode()">
-      Already have an account? <a (click)="authMode='login'">Click here to login.</a>
+      Already have an account? <a (click)="login($event)">Click here to login.</a>
     </span>
   </div>
 </div>

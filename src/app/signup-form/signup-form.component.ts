@@ -9,6 +9,7 @@ import {Angular2TokenService} from 'angular2-token';
 export class SignupFormComponent implements OnInit {
 
   signUpUser = {email: '', password: '', passwordConfirmation: ''};
+  private errors = {};
 
   @Output() onFormResult = new EventEmitter<any>();
 
@@ -24,14 +25,15 @@ export class SignupFormComponent implements OnInit {
       (res) => {
 
         if (res.status === 200) {
-          this.onFormResult.emit({signedUp: true, res})
+          this.onFormResult.emit({signed: true, res})
         }
 
       },
 
       (err) => {
-        console.log(err.json());
-        this.onFormResult.emit({signedUp: false, err});
+        const data = err.json();
+        this.errors = data.errors || {};
+        this.onFormResult.emit({signed: false, err});
       }
     )
 

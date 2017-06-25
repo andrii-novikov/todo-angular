@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module'
-import { MaterializeModule } from 'angular2-materialize';
 import { FormsModule } from '@angular/forms';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { ProjectsComponent } from './projects/projects.component';
@@ -30,8 +30,8 @@ import { ProjectService } from './services/projects.service';
     BrowserModule,
     HttpModule,
     AppRoutingModule,
-    MaterializeModule,
-    FormsModule
+    FormsModule,
+    NgbModule.forRoot()
   ],
   providers: [ProjectService, Angular2TokenService],
   bootstrap: [AppComponent]

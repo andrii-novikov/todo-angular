@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+a.btn.btn-link:not([href]) {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #0275d8;
+}

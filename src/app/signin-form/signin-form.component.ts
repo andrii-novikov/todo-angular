@@ -14,10 +14,6 @@ export class SigninFormComponent implements OnInit {
   constructor( private tokenAuthService: Angular2TokenService ) { }
 
   ngOnInit() {
-    setTimeout(() => {
-      console.log(this.tokenAuthService.currentUserData)
-
-    }, 1000);
   }
 
   onSignInSubmit() {
@@ -26,13 +22,12 @@ export class SigninFormComponent implements OnInit {
 
       res => {
         if (res.status === 200) {
-          this.onFormResult.emit({signedIn: true, res});
+          this.onFormResult.emit({signed: true, res});
         }
       },
 
       err => {
-        console.log('err:', err);
-        this.onFormResult.emit({signedIn: false, err});
+        this.onFormResult.emit({signed: false, err});
       }
     )
 

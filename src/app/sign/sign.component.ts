@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router'
 @Component({
   selector: 'app-sign',
   templateUrl: './sign.component.html',
@@ -8,25 +8,20 @@ import { Component, OnInit } from '@angular/core';
 export class SignComponent implements OnInit {
 
   private authMode: 'login' | 'register' = 'login';
-
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  onLoginFormResult(e) {
-    if (e.signedIn) {
-      console.log(e)
+  login() { this.authMode = 'login'; }
+  register() { this.authMode = 'register'; }
+
+  onFormResult(e) {
+    console.log(e);
+    if (e.signed) {
+      this.router.navigate(['projects']);
     } else {
       alert(e.err.json().errors[0])
-    }
-  }
-
-  onRegisterFormResult(e) {
-    if (e.signedUp) {
-      console.log(e)
-    } else {
-      alert(e.err.json().errors.full_messages[0])
     }
   }
 
