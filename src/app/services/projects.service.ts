@@ -4,24 +4,24 @@ import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Project } from '../models/project';
+import { Angular2TokenService } from 'angular2-token';
 
 @Injectable()
 export class ProjectService {
-  private url = 'http://localhost:3000/api/v1/projects';  // URL to web api
+  private url = 'api/v1/projects';  // URL to web api
   private headers = new Headers();
 
-  constructor(private http: Http) {
-    this.headers.append('Content-Type', 'application/json');
+  constructor(private auth: Angular2TokenService) {
   }
 
   getProjects(): Promise<Array<Project>> {
-    return this.http.get(this.url, this.headers).toPromise().then((response) => {
+    return this.auth.get(this.url).toPromise().then((response) => {
         return response.json() as Project[];
       }).catch(this.handleError);
   }
 
   getProject(id: number): Promise<Project> {
-    return this.http.get(this.url + `/${id}`, this.headers).toPromise().then((response) => {
+    return this.auth.get(this.url + `/${id}`, this.headers).toPromise().then((response) => {
       return response.json().data as Project;
     }).catch(this.handleError);
   }
@@ -36,7 +36,7 @@ export class ProjectService {
   delete(project: Project): Promise<Response> {
     const url = `${this.url}/${project.id}`;
 
-    return this.http
+    return this.auth
       .delete(url, { headers: this.headers })
       .toPromise()
       .catch(this.handleError);
@@ -48,7 +48,7 @@ export class ProjectService {
       'Content-Type': 'application/json'
     });
 
-    return this.http
+    return this.auth
       .post(this.url, JSON.stringify(project), { headers: headers })
       .toPromise()
       .then(res => res.json().data)
@@ -62,7 +62,7 @@ export class ProjectService {
 
     const url = `${this.url}/${project.id}`;
 
-    return this.http
+    return this.auth
       .put(url, JSON.stringify(project), { headers: headers })
       .toPromise()
       .then(() => project)
