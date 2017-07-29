@@ -1,4 +1,7 @@
+import {Task} from 'app/models/task';
+
 export class Project {
-  id: Number;
-  name: String;
+  id: number;
+  name: string;
+  tasks: Array<Task>;
 }

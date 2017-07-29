@@ -1,0 +1,12 @@
+<form class="form-inline" (ngSubmit)="onSubmit()">
+  <div class="form-group w-100" [ngClass]="{'has-danger': hasErrors()}">
+    <div class="input-group w-100">
+      <div class="input-group-addon"><span class="fa fa-plus"></span></div>
+      <input type="text" class="form-control" id="name" placeholder="What todo?" [(ngModel)]="task.name" name="name">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-success" [ngClass]="{'btn-danger': hasErrors()}">Create</button>
+      </span>
+    </div>
+    <span class="form-control-feedback" *ngIf="hasErrors()">{{errors.name[0]}}</span>
+  </div>
+</form>

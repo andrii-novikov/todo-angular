@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProjectsComponent } from './projects/projects.component'
-import { ProjectDetailComponent } from './project-detail/project-detail.component'
-import { SignComponent } from './sign/sign.component'
+import { ProjectsComponent } from './components/projects/projects.component'
+import { ProjectsShowComponent } from './components/projects-show/projects-show.component'
+import { SignComponent } from './components/sign/sign.component'
 
 const routes: Routes = [
   {
@@ -12,7 +12,7 @@ const routes: Routes = [
   },
   {
     path: 'projects/:id',
-    component: ProjectDetailComponent
+    component: ProjectsShowComponent
   },
   {
     path: 'projects',

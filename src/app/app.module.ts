@@ -6,25 +6,33 @@ import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { ProjectsComponent } from './projects/projects.component';
-import { ProjectDetailComponent } from './project-detail/project-detail.component'
-import { ToolbarComponent } from './toolbar/toolbar.component';
-import { SignComponent } from './sign/sign.component';
-import { SigninFormComponent } from './signin-form/signin-form.component';
-import { SignupFormComponent } from './signup-form/signup-form.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { SignComponent } from './components/sign/sign.component';
+import { SigninFormComponent } from './components/signin-form/signin-form.component';
+import { SignupFormComponent } from './components/signup-form/signup-form.component';
+import { ProjectsShowComponent } from './components/projects-show/projects-show.component';
+import { ProjectInfoComponent } from './components/project-info/project-info.component';
+import { HumanizePipe } from 'app/pipes/humanize.pipe'
 
 import { Angular2TokenService } from 'angular2-token'
 import { ProjectService } from './services/projects.service';
+import {TaskService} from './services/tasks.service';
+import { ProjectInfoFormComponent } from './components/project-info-form/project-info-form.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ProjectsComponent,
-    ProjectDetailComponent,
     ToolbarComponent,
     SigninFormComponent,
     SignupFormComponent,
-    SignComponent
+    SignComponent,
+    ProjectsShowComponent,
+    ProjectInfoComponent,
+    HumanizePipe,
+    ProjectInfoFormComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +41,7 @@ import { ProjectService } from './services/projects.service';
     FormsModule,
     NgbModule.forRoot()
   ],
-  providers: [ProjectService, Angular2TokenService],
+  providers: [ProjectService, Angular2TokenService, TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
