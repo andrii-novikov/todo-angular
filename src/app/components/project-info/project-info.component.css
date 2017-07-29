@@ -1,0 +1,11 @@
+/*.card-block.task:nth-child(2n) {*/
+  /*background: rgba(10, 60, 255, 0.24);*/
+/*}*/
+/*.card-block.task:nth-child(2n-1) {*/
+  /*background: rgba(0, 0, 0, 0.1);*/
+/*}*/
+/*.card-block.task:not(:last-child) {*/
+  /*border-bottom: 1px solid #dddddd;*/
+/*}*/
+/*.card-block.task {  }*/
+/*.card-block.task {  }*/

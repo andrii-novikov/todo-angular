@@ -2,6 +2,7 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Project } from 'app/models/project'
 import {Task} from '../../models/task';
 import {ProjectService} from '../../services/projects.service';
+import {TaskService} from "../../services/tasks.service";
 
 @Component({
   selector: 'app-project-info',
@@ -14,7 +15,7 @@ export class ProjectInfoComponent implements OnInit {
   @Output() onDestroy = new EventEmitter<Project>();
   @Output() onUpdate = new EventEmitter<Project>();
 
-  constructor(private projectsService: ProjectService) { }
+  constructor(private projectsService: ProjectService, private taskService: TaskService) { }
 
   ngOnInit() {
   }
@@ -25,6 +26,15 @@ export class ProjectInfoComponent implements OnInit {
 
   handleUpdate(project: Project): void {
     this.onUpdate.emit(project)
+  }
+
+  handleDrop(data) {
+    this.project.tasks.map((task, index) => {
+      if (index !== task.order) {
+        task.order = index
+        this.taskService.save(task)
+      }
+    })
   }
 
   deleteProject() {

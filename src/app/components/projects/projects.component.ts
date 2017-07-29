@@ -34,7 +34,6 @@ export class ProjectsComponent implements OnInit {
 
   handleUpdate(project: Project): void {
     this.projects.find(p => !p.id && p.name === project.name).id = project.id
-    console.log(this.projects)
   }
 
 }

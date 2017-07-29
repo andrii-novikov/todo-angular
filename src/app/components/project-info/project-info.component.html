@@ -12,7 +12,15 @@
   <div class="card-header">
     <app-project-info-form [project]="project" (onTaskAdd)="handleTaskAdd($event)"></app-project-info-form>
   </div>
-  <div class="card-block" *ngFor="let task of project.tasks">
-    <h4 class="card-title">{{task.name | humanize}}</h4>
-  </div>
+  <ul class="list-group" dnd-sortable-container [sortableData]="project.tasks">
+    <li class="list-group-item"
+        *ngFor="let task of project.tasks; let i = index"
+        dnd-sortable
+        [sortableIndex]="i"
+        (onDropSuccess)="handleDrop(i)">
+      <div class="col-sm-4">{{task.id}}.{{task.name | humanize}}</div>
+      <div class="col-sm-4">{{task.status}} - {{task.order}}</div>
+      <div class="col-sm-4">{{task.deadline | date | deadline}}</div>
+    </li>
+  </ul>
 </div>
