@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/projects.service'
 import { Project } from '../../models/project'
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-projects',
@@ -25,6 +26,15 @@ export class ProjectsComponent implements OnInit {
 
   addProject(): void {
     this.projects.push(new Project())
+  }
+
+  handleDestroy(project: Project): void {
+    this.projects = this.projects.filter((p) => p.id !== project.id)
+  }
+
+  handleUpdate(project: Project): void {
+    this.projects.find(p => !p.id && p.name === project.name).id = project.id
+    console.log(this.projects)
   }
 
 }

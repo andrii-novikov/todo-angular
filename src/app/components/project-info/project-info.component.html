@@ -2,10 +2,10 @@
   <div class="card-header">
     <div class="row">
       <div class="col-md-9">
-        <app-project-edit [project]="project"></app-project-edit>
+        <app-project-edit [(project)]="project"></app-project-edit>
       </div>
       <div class="col-md-3">
-        <button class="btn btn-danger pull-right"><span class="fa fa-trash"></span></button>
+        <button (click)="deleteProject()" class="btn btn-danger pull-right"><span class="fa fa-trash"></span></button>
       </div>
     </div>
   </div>

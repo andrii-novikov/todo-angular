@@ -1,6 +1,6 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import {Component, Input, ViewChild, OnInit} from '@angular/core';
 import { Project } from '../../models/project';
-import {ProjectService} from '../../services/projects.service';
+import { ProjectService } from '../../services/projects.service';
 
 @Component({
   selector: 'app-project-edit',
@@ -8,7 +8,7 @@ import {ProjectService} from '../../services/projects.service';
   styleUrls: ['./project-edit.component.css']
 })
 
-export class ProjectEditComponent {
+export class ProjectEditComponent implements OnInit {
   @Input() project: Project;
   @ViewChild('name') input;
 
@@ -16,6 +16,12 @@ export class ProjectEditComponent {
   private errors: any = false;
 
   constructor(private projectService: ProjectService) { }
+
+  ngOnInit() {
+    if (this.isNewProject()) {
+      this.toggleEdit()
+    }
+  }
 
   toggleEdit(): void {
     this.edited = !this.edited;
@@ -26,11 +32,23 @@ export class ProjectEditComponent {
   }
 
   onSubmit(): void {
-    this.projectService.save(this.project).then(() => this.toggleEdit()).catch((errors) => this.errors = errors)
+    this.projectService.save(this.project).then((project) => this.onSuccess(project)).catch((errors) => this.errors = errors)
+  }
+
+  onSuccess(project) {
+    if (this.isNewProject()) {
+      this.project.id = project.id;
+    }
+
+    this.toggleEdit()
   }
 
   hasErrors(): boolean {
     return !!this.errors
+  }
+
+  isNewProject(): boolean {
+    return !this.project.id
   }
 
 }

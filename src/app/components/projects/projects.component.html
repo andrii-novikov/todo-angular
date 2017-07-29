@@ -5,7 +5,11 @@
     </div>
   </div>
 
-  <app-project-info *ngFor="let project of projects" [project]='project'></app-project-info >
+  <app-project-info *ngFor="let project of projects"
+                    [project]='project'
+                    (onDestroy)='handleDestroy($event)'
+                    (onUpdate)='handleUpdate($event)'
+  ></app-project-info>
 
   <div class="row">
     <div class="col-md-12 text-center m-3">

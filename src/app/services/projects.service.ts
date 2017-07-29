@@ -37,22 +37,14 @@ export class ProjectService {
 
   // Add new Project
   private post(project: Project): Promise<Project> {
-    return this.auth
-      .post(this.url, {project: project})
-      .toPromise()
-      .then(res => res.json().data)
-      .catch(this.handleError);
+    return this.auth.post(this.url, {project: project}).toPromise().then(res => res.json()).catch(this.handleError);
   }
 
   // Update existing Project
   private put(project: Project): Promise<Project> {
     const url = `${this.url}/${project.id}`;
 
-    return this.auth
-      .put(url, {project: project})
-      .toPromise()
-      .then(() => project)
-      .catch(this.handleError);
+    return this.auth.put(url, {project: project}).toPromise().catch(this.handleError);
   }
 
   private handleError(error: any): Promise<any> {

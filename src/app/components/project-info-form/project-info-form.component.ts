@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import {Task} from '../../models/task';
 import {TaskService} from '../../services/tasks.service';
 import {Project} from '../../models/project';
@@ -9,7 +9,7 @@ import {Project} from '../../models/project';
   styleUrls: ['./project-info-form.component.css']
 })
 
-export class ProjectInfoFormComponent implements OnInit {
+export class ProjectInfoFormComponent {
   @Input() project: Project;
   @Output() onTaskAdd = new EventEmitter<Task>();
 
@@ -18,12 +18,9 @@ export class ProjectInfoFormComponent implements OnInit {
 
   constructor(private taskService: TaskService) { }
 
-  ngOnInit() {
-    this.task.project_id = this.project.id;
-  }
-
   onSubmit() {
     this.errors = false;
+    this.task.project_id = this.project.id;
     this.taskService.save(this.task).then((data) => this.onSuccess(data)).catch((data) => this.onFailure(data))
   }
 
