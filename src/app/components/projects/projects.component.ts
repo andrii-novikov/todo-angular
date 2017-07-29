@@ -23,4 +23,8 @@ export class ProjectsComponent implements OnInit {
     })
   }
 
+  addProject(): void {
+    this.projects.push(new Project())
+  }
+
 }

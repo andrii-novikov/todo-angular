@@ -17,7 +17,6 @@ export class ProjectInfoComponent implements OnInit {
   }
 
   handleTaskAdd(task: Task) {
-    console.warn('handle')
     this.project.tasks.push(task)
   }
 }

@@ -1,7 +1,15 @@
 <div class="container">
   <div class="row">
-    <h2>My TODOs</h2>
+    <div class="col-md-12 text-center m-3">
+      <h2>My TODOs</h2>
+    </div>
   </div>
 
   <app-project-info *ngFor="let project of projects" [project]='project'></app-project-info >
+
+  <div class="row">
+    <div class="col-md-12 text-center m-3">
+      <div class="btn btn-success w-75" (click)="addProject()">Add Project</div>
+    </div>
+  </div>
 </div>

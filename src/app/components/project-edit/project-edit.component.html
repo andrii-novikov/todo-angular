@@ -1,0 +1,12 @@
+<h3 [hidden]="edited" (click)="toggleEdit()">{{project.name}}</h3>
+<form [hidden]="!edited" class="form-inline" (ngSubmit)="onSubmit()">
+  <div class="form-group w-100" [ngClass]="{'has-danger': hasErrors()}">
+    <div class="input-group w-100">
+      <input type="text" class="form-control" #name placeholder="What todo?" [(ngModel)]="project.name" name="name">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-success" [ngClass]="{'btn-danger': hasErrors()}"><span class="fa fa-check"></span></button>
+      </span>
+    </div>
+    <span class="form-control-feedback" *ngIf="hasErrors()">{{errors.name[0]}}</span>
+  </div>
+</form>
