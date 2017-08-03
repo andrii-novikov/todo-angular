@@ -13,7 +13,6 @@ export class ProjectInfoComponent implements OnInit {
 
   @Input() project: Project;
   @Output() onDestroy = new EventEmitter<Project>();
-  @Output() onUpdate = new EventEmitter<Project>();
 
   constructor(private projectsService: ProjectService, private taskService: TaskService) { }
 
@@ -21,20 +20,7 @@ export class ProjectInfoComponent implements OnInit {
   }
 
   handleTaskAdd(task: Task) {
-    this.project.tasks.push(task)
-  }
-
-  handleUpdate(project: Project): void {
-    this.onUpdate.emit(project)
-  }
-
-  handleDrop(data) {
-    this.project.tasks.map((task, index) => {
-      if (index !== task.order) {
-        task.order = index
-        this.taskService.save(task)
-      }
-    })
+    this.project.tasks.push(task);
   }
 
   deleteProject() {

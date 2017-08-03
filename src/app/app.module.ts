@@ -22,6 +22,7 @@ import { ProjectService } from './services/projects.service';
 import {TaskService} from './services/tasks.service';
 import { ProjectInfoFormComponent } from './components/project-info-form/project-info-form.component';
 import { ProjectEditComponent } from './components/project-edit/project-edit.component';
+import { ProjectTasksListComponent } from './components/project-tasks-list/project-tasks-list.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { ProjectEditComponent } from './components/project-edit/project-edit.com
     ProjectEditComponent,
     HumanizePipe,
     DeadlinePipe,
+    ProjectTasksListComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,13 +16,13 @@ export class TaskService {
 
   getTasks(project_id: number): Promise<Array<Task>> {
     return this.auth.get(this.url(project_id)).toPromise().then((response) => {
-        return response.json() as Task[];
+        return Task.collection(response.json());
       }).catch(this.handleError);
   }
 
   getTask(project_id: number, id: number): Promise<Task> {
     return this.auth.get(this.url(project_id) + `/${id}`).toPromise().then((response) => {
-      return response.json().data as Task;
+      return new Task(response.json().data);
     }).catch(this.handleError);
   }
 
@@ -44,7 +44,7 @@ export class TaskService {
     return this.auth
       .post(this.url(task.project_id), {task: task})
       .toPromise()
-      .then(res => res.json() as Task)
+      .then(res => new Task(res.json()))
       .catch(this.handleError);
   }
 

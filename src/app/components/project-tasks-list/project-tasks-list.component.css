@@ -1,0 +1,11 @@
+.badge.on_hold {
+  background: #afafaf;
+}
+
+.badge.in_progress {
+  background: #5fd150;
+}
+
+.badge.completed {
+  background: #0006ac;
+}

@@ -15,13 +15,13 @@ export class ProjectService {
 
   getProjects(): Promise<Array<Project>> {
     return this.auth.get(this.url).toPromise().then((response) => {
-        return response.json() as Project[];
+        return Project.collection(response.json());
       }).catch(this.handleError);
   }
 
   getProject(id: number): Promise<Project> {
     return this.auth.get(this.url + `/${id}`).toPromise().then((response) => {
-      return response.json().data as Project;
+      return new Project(response.json().data);
     }).catch(this.handleError);
   }
 
@@ -37,7 +37,10 @@ export class ProjectService {
 
   // Add new Project
   private post(project: Project): Promise<Project> {
-    return this.auth.post(this.url, {project: project}).toPromise().then(res => res.json()).catch(this.handleError);
+    return this.auth.post(this.url, {project: project})
+      .toPromise()
+      .then(res => new Project(res.json()))
+      .catch(this.handleError);
   }
 
   // Update existing Project
