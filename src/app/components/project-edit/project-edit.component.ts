@@ -40,7 +40,7 @@ export class ProjectEditComponent implements OnInit {
       this.project.id = project.id;
     }
 
-    this.toggleEdit()
+    this.close()
   }
 
   hasErrors(): boolean {
@@ -49,6 +49,10 @@ export class ProjectEditComponent implements OnInit {
 
   isNewProject(): boolean {
     return !this.project.id
+  }
+
+  close() {
+    this.edited = false
   }
 
 }
