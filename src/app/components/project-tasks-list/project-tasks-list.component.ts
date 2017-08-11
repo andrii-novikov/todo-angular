@@ -48,4 +48,8 @@ export class ProjectTasksListComponent implements OnInit {
     })
   }
 
+  handleDateChange(task: Task) {
+    this.taskService.save(task)
+  }
+
 }

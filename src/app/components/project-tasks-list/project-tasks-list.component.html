@@ -4,15 +4,17 @@
       dnd-sortable
       [sortableIndex]="i"
       (onDropSuccess)="handleDrop(i)">
-    {{task.name | humanize}}
     <div>
+      {{task.name | humanize}}
       <span class="badge badge-success badge-pill" [ngClass]="task.status">{{task.status | humanize}}</span>
-      <span class="badge badge-warning badge-pill" *ngIf="task.deadline">{{task.deadline | date }}</span>
     </div>
-    <div class="btn-group btn-group-sm">
-      <button (click)="startTask(task)" class="btn btn-success" *ngIf="task.isOnHold()"><span class="fa fa-play"></span></button>
-      <button (click)="finishTask(task)" class="btn btn-success" *ngIf="task.isInProgress()"><span class="fa fa-check"></span></button>
-      <button (click)="destroyTask(task)" class="btn btn-danger"><span class="fa fa-trash"></span></button>
+    <div>
+      <app-datepicker [(date)]="task.deadline" *ngIf="!task.isCompleted()" (onDateChange)="handleDateChange(task)" class="d-inline-block"></app-datepicker>
+      <div class="btn-group btn-group-sm">
+        <button (click)="startTask(task)" class="btn btn-success" *ngIf="task.isOnHold()"><span class="fa fa-play"></span></button>
+        <button (click)="finishTask(task)" class="btn btn-success" *ngIf="task.isInProgress()"><span class="fa fa-check"></span></button>
+        <button (click)="destroyTask(task)" class="btn btn-danger"><span class="fa fa-trash"></span></button>
+      </div>
     </div>
   </li>
 </ul>
